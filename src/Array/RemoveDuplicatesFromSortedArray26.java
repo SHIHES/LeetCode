@@ -2,6 +2,7 @@ package Array;
 
 /**
  * LeetCode #26
+ *
  * @author SHIHS 2023/2/1
  * @resource <a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/solutions/2601915/remove-duplicates-from-sorted-array/">...</a>
  */
@@ -12,6 +13,7 @@ public class RemoveDuplicatesFromSortedArray26 {
      * The first index is used to get the insert position, the second index is used to traverse the loop.
      * TC: O(n)
      * SC: O(1)
+     *
      * @param nums
      * @return
      */
