@@ -3,7 +3,7 @@ package Array;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestPlusOne66 {
+public class PlusOne66Test {
 
     @Test
     public void PlusOneTest1() {
