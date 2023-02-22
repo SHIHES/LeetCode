@@ -2,6 +2,7 @@ package HeadFirstJava;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class RyanAndMonicaTest {
     public static void main(String[] args) {
@@ -38,21 +39,24 @@ class RyanAndMonicaJob implements Runnable {
 }
 
 class BankAccount {
-    private int balance = 100;
+    private final AtomicInteger balance = new AtomicInteger(100);
 
     public int getBalance() {
-        return balance;
+        return balance.get();
     }
 
-    public synchronized void spend(String name, int amount) {
-        if (balance >= amount) {
-            balance = balance - amount;
-            if (balance < 0) {
-                System.out.println("Overdrawn!");
-            }
-            System.out.println(name + " finishes spending");
+    public void spend(String name, int amount) {
+
+        boolean success = balance.compareAndSet(balance.get(), balance.get() - amount);
+
+        if (!success) {
+            System.out.println("Sorry " + name + ", you haven't spent the money.");
         } else {
-            System.out.println("Sorry, not enough for " + name);
+            if(balance.get() - amount < 0){
+                System.out.println("Sorry, not enough for " + name);
+            } else {
+                System.out.println(name + " finishes spending");
+            }
         }
     }
 }
