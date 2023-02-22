@@ -3,6 +3,7 @@ package HeadFirstJava;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class LostUpdate {
     public static void main(String[] args) throws InterruptedException {
@@ -19,10 +20,10 @@ public class LostUpdate {
     }
 }
 class Balance {
-    int balance = 0;
+    AtomicInteger balance = new AtomicInteger(0);
     // 正確是要加上 sychronized
     public  void increment() {
-        balance++;
+        balance.incrementAndGet();
         // 超神奇，加上print thread 都可以得到1000 OAO
 //        System.out.println(Thread.currentThread().getName());
     }
