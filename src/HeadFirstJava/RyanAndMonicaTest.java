@@ -39,15 +39,15 @@ class RyanAndMonicaJob implements Runnable {
 }
 
 class BankAccount {
-    private final AtomicInteger balance = new AtomicInteger(100);
-
+    private final AtomicInteger balance = new AtomicInteger(100); // balance 結餘
+    int initialBalance = balance.get();
     public int getBalance() {
         return balance.get();
     }
 
     public void spend(String name, int amount) {
 
-        boolean success = balance.compareAndSet(balance.get(), balance.get() - amount);
+        boolean success = balance.compareAndSet(initialBalance, initialBalance - amount);
 
         if (!success) {
             System.out.println("Sorry " + name + ", you haven't spent the money.");
