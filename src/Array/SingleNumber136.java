@@ -16,10 +16,10 @@ public class SingleNumber136 {
      * @return
      */
     public static int singleNumber(int[] nums) {
-        int result = 0; // 定义一个变量 result
+        int result = 0; // 初始值
         for (int i = 0; i < nums.length; i++) {
-            result ^= nums[i]; // 利用异或运算来找出只出现一次的元素
+            result ^= nums[i]; // 利用XOR来找出出現一次的元素
         }
-        return result; // 返回只出现一次的元素
+        return result;
     }
 }
